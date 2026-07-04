@@ -15,6 +15,9 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-dot" id="cursor-dot"></div>
 
+  <!-- 3D particle field + wireframe (canvas) -->
+  <canvas id="bg3d" aria-hidden="true"></canvas>
+
   <!-- animated gradient blobs -->
   <div class="bg-orbs">
     <span class="orb orb-1"></span>
@@ -51,10 +54,10 @@
     </div>
 
     <h1 class="hero-title">
-      <span class="line"><em>i build</em> <strong>SECURE</strong></span>
-      <span class="line"><strong>SCALABLE</strong> <em>&amp;</em></span>
-      <span class="line"><strong>DISTRIBUTED</strong></span>
-      <span class="line"><strong>BACKENDS</strong> <span class="arrow" id="hero-arrow">&#8594;</span></span>
+      <span class="line"><span class="line-inner"><em>i build</em> <strong>SECURE</strong></span></span>
+      <span class="line"><span class="line-inner"><strong>SCALABLE</strong> <em>&amp;</em></span></span>
+      <span class="line"><span class="line-inner"><strong class="grad">DISTRIBUTED</strong></span></span>
+      <span class="line"><span class="line-inner"><strong>BACKENDS</strong> <span class="arrow" id="hero-arrow">&#8594;</span></span></span>
     </h1>
 
     <p class="hero-sub reveal">
@@ -82,17 +85,28 @@
       <div class="tcard tcard-4" data-depth="0.85">
         <div class="tcard-inner"><span class="tdot"></span><span class="tmeta"><b>Redis</b><i>cache</i></span></div>
       </div>
+      <div class="tcard tcard-5" data-depth="0.35">
+        <div class="tcard-inner"><span class="tdot"></span><span class="tmeta"><b>MySQL</b><i>database</i></span></div>
+      </div>
+      <div class="tcard tcard-6" data-depth="0.55">
+        <div class="tcard-inner"><span class="tdot"></span><span class="tmeta"><b>Docker</b><i>containers</i></span></div>
+      </div>
+      <div class="tcard tcard-7" data-depth="0.75">
+        <div class="tcard-inner"><span class="tdot"></span><span class="tmeta"><b>AWS</b><i>cloud</i></span></div>
+      </div>
     </div>
 
     <div class="hero-marquee" aria-hidden="true">
       <div class="marquee-track">
         <span>JAVA</span><span>&#9679;</span><span>SPRING BOOT</span><span>&#9679;</span>
         <span>KAFKA</span><span>&#9679;</span><span>MICROSERVICES</span><span>&#9679;</span>
-        <span>AWS</span><span>&#9679;</span><span>DOCKER</span><span>&#9679;</span>
+        <span>MYSQL</span><span>&#9679;</span><span>AWS</span><span>&#9679;</span>
+        <span>DOCKER</span><span>&#9679;</span><span>KUBERNETES</span><span>&#9679;</span>
         <span>REDIS</span><span>&#9679;</span><span>SYSTEM DESIGN</span><span>&#9679;</span>
         <span>JAVA</span><span>&#9679;</span><span>SPRING BOOT</span><span>&#9679;</span>
         <span>KAFKA</span><span>&#9679;</span><span>MICROSERVICES</span><span>&#9679;</span>
-        <span>AWS</span><span>&#9679;</span><span>DOCKER</span><span>&#9679;</span>
+        <span>MYSQL</span><span>&#9679;</span><span>AWS</span><span>&#9679;</span>
+        <span>DOCKER</span><span>&#9679;</span><span>KUBERNETES</span><span>&#9679;</span>
         <span>REDIS</span><span>&#9679;</span><span>SYSTEM DESIGN</span><span>&#9679;</span>
       </div>
     </div>
@@ -176,19 +190,19 @@
         <div class="tags">
           <span>Spring WebFlux</span><span>Apache Kafka</span><span>AES-256</span><span>Resilience4j</span>
         </div>
-        <a class="project-cta" href="https://sl1nk.com/codry2e" target="_blank" rel="noopener">View project &#8599;</a>
       </article>
 
       <article class="project reveal" data-tilt>
-        <h3>Blogging Back-end Application</h3>
-        <p>A multi-user blogging platform with JWT auth, RBAC, full-text search and real-time, event-driven notifications.</p>
+        <h3>Vyapaar — Distributed Order Platform</h3>
+        <p>An event-driven order platform built as 4 Spring Boot microservices coordinated by a Saga orchestrator — no distributed transactions, correct under failure.</p>
         <ul class="project-points">
-          <li>Kafka-powered asynchronous notifications, decoupling the notification service from the API response path.</li>
-          <li>Redis cache-aside layer for hot posts &amp; comments, sharply reducing DB load and retrieval latency.</li>
-          <li>Scalable REST APIs with Spring Data JPA, repository pattern and <code>@Transactional</code> management over large datasets.</li>
+          <li>Each service owns its own database and communicates only over <strong>Apache Kafka</strong>, coordinated by a Saga orchestrator implemented as a persisted state machine.</li>
+          <li>Compensating transactions run in reverse order on failure, with a <strong>timeout scanner</strong> that recovers sagas stranded by a crash or lost message.</li>
+          <li>Correct under at-least-once delivery via the <strong>Transactional Outbox</strong> pattern, idempotent consumers and <code>@Version</code> optimistic locking that stops concurrent orders from overselling stock.</li>
+          <li>PayU checkout with <strong>SHA-512</strong> callback verification behind Spring Cloud Gateway (JWT auth, Redis rate limiting), plus a React SPA visualizing live saga progress and rollback.</li>
         </ul>
         <div class="tags">
-          <span>Spring Boot</span><span>Apache Kafka</span><span>Redis</span><span>MySQL</span><span>JPA</span>
+          <span>Java 21</span><span>Spring Boot 3</span><span>Apache Kafka</span><span>Spring Cloud Gateway</span><span>Redis</span><span>React</span>
         </div>
       </article>
     </div>
