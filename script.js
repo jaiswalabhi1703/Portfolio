@@ -287,3 +287,28 @@ if (canvas && !reducedMotion) {
   }
   requestAnimationFrame(render);
 }
+
+/* ============ COPY EMAIL ============ */
+const copyBtn = document.getElementById('copy-email');
+if (copyBtn) {
+  copyBtn.addEventListener('click', async () => {
+    const email = copyBtn.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      // clipboard API needs https/localhost — fall back to a hidden textarea
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    copyBtn.textContent = 'Copied ✓';
+    copyBtn.classList.add('copied');
+    setTimeout(() => {
+      copyBtn.textContent = 'Copy email';
+      copyBtn.classList.remove('copied');
+    }, 2000);
+  });
+}

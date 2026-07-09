@@ -316,6 +316,11 @@ section{position:relative;z-index:2}
 .contact-email{display:inline-block;font-size:clamp(20px,3.4vw,38px);font-family:'Instrument Serif',serif;
   border-bottom:2px solid var(--line);padding-bottom:6px;transition:.3s}
 .contact-email:hover{border-color:var(--accent-2);color:var(--accent-2);text-shadow:0 0 30px rgba(56,225,255,.6)}
+.copy-email{display:block;margin:18px auto 0;background:none;border:1px solid var(--line);
+  color:var(--muted);font:inherit;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  padding:8px 18px;border-radius:999px;cursor:pointer;transition:.3s}
+.copy-email:hover{border-color:var(--accent);color:var(--ink)}
+.copy-email.copied{border-color:var(--accent-2);color:var(--accent-2)}
 .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 36px;margin-top:48px;font-size:15px}
 .contact-links a{color:var(--muted);position:relative;transition:color .25s}
 .contact-links a:hover{color:var(--ink)}
